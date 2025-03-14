@@ -1,0 +1,1350 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap");
+
+/* =========================================
+   1. ROOT VARIABLES & BASE STYLES
+   ========================================= */
+:root {
+  /* Color variables */
+  --ff69b4-rgb: 255, 105, 180;
+  --ffffff-rgb: 255, 255, 255;
+  --dc143c-rgb: 220, 20, 60;
+  --ffd700-rgb: 255, 215, 0;
+  --8b4513-rgb: 139, 69, 19;
+  --50c878-rgb: 80, 200, 120;
+  --c0c0c0-rgb: 192, 192, 192;
+  --000000-rgb: 0, 0, 0;
+  --0000ff-rgb: 0, 0, 255;
+
+  /* Other variables */
+  --vh: 1vh;
+  --primary-color: #e83e8c;
+  --primary-light: rgba(232, 62, 140, 0.2);
+  --primary-lightest: rgba(232, 62, 140, 0.1);
+  --primary-dark: #c13584;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+  cursor: none;
+}
+
+/* Background pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm0-1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23f1c0e8' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm0-1c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23c0def1' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* =========================================
+   2. TYPOGRAPHY
+   ========================================= */
+h1 {
+  font-family: "Pacifico", cursive;
+  font-size: 3.5rem;
+  color: var(--primary-color);
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05), 0 0 15px rgba(232, 62, 140, 0.2);
+  margin-bottom: 1.5rem;
+  animation: colorChange 8s infinite alternate,
+    gentleFloat 6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+  animation: gentleFloat 6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+p,
+h2 {
+  animation: fadeInUp 1s ease forwards;
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+section.in-view p,
+section.in-view h2 {
+  animation-play-state: running;
+}
+
+/* Header styling with typing effect */
+header h1 {
+  min-height: 60px;
+  font-size: 3.2rem;
+}
+
+.fact {
+  font-style: italic;
+  color: #555;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  position: relative;
+  z-index: 1;
+}
+
+.fact::before {
+  content: '"';
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  color: var(--primary-lightest);
+  position: absolute;
+  top: -10px;
+  left: 5px;
+  display: block;
+  line-height: 1;
+}
+
+.fact::after {
+  content: '"';
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  color: var(--primary-lightest);
+  position: absolute;
+  bottom: -40px;
+  right: 5px;
+  display: block;
+  line-height: 1;
+}
+
+/* =========================================
+   3. SECTION STYLING
+   ========================================= */
+section {
+  margin: 3rem 0;
+  padding: 2.5rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 32px rgba(31, 38, 135, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(31, 38, 135, 0.15);
+}
+
+/* Intro section styling */
+#intro {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 245, 247, 0.9),
+    rgba(255, 240, 246, 0.9)
+  );
+  border-top: 4px solid rgba(232, 62, 140, 0.3);
+  border-bottom: 4px solid rgba(232, 62, 140, 0.3);
+  position: relative;
+  background-attachment: fixed;
+}
+
+/* Decorative elements for intro */
+#intro::before,
+#intro::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--primary-light);
+  z-index: 0;
+}
+
+#intro::before {
+  top: 20px;
+  left: 20px;
+  border-right: none;
+  border-bottom: none;
+}
+
+#intro::after {
+  bottom: 20px;
+  right: 20px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Outro section styling */
+#outro {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 246, 0.9),
+    rgba(255, 245, 247, 0.9)
+  );
+  animation: fadeInUp 1.5s ease;
+  border-top: 4px solid rgba(232, 62, 140, 0.3);
+  border-bottom: 4px solid rgba(232, 62, 140, 0.3);
+  position: relative;
+  background-attachment: fixed;
+}
+
+/* Outro decorative elements */
+#outro::before,
+#outro::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--primary-light);
+  z-index: 0;
+}
+
+#outro::before {
+  top: 20px;
+  right: 20px;
+  border-left: none;
+  border-bottom: none;
+}
+
+#outro::after {
+  bottom: 20px;
+  left: 20px;
+  border-right: none;
+  border-top: none;
+}
+
+/* =========================================
+   4. GALLERY STYLING
+   ========================================= */
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Image card styling - merged properties */
+.image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.01);
+  border: 5px solid var(--color, #333);
+  transform-origin: center;
+  min-height: 100px;
+  background-color: rgba(var(--color-rgb, 51, 51, 51), 0.1);
+
+  /* Animation properties */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease,
+    border-color 0.3s ease;
+  will-change: transform;
+}
+
+/* Hover effects */
+.image-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12),
+    0 0 0 2px rgba(var(--color-rgb, 51, 51, 51), 0.3),
+    0 5px 15px var(--color, rgba(0, 0, 0, 0.2));
+  z-index: 10;
+}
+
+/* Animation states */
+.image-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--delay, 0) * 1ms);
+}
+
+.image-card.revealed:hover {
+  transform: translateY(-10px) scale(1.03);
+}
+
+/* Card gradient overlay */
+.image-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    var(--color, rgba(0, 0, 0, 0.7))
+  );
+  opacity: 0.4;
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+.image-card:hover::before {
+  opacity: 0.2;
+}
+
+/* Card glow effect */
+.image-card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px dashed var(--color, rgba(255, 255, 255, 0.5));
+  border-radius: 20px;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 10px var(--color, rgba(0, 0, 0, 0.3)));
+}
+
+.image-card:hover::after {
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  opacity: 0.5;
+}
+
+/* Card images */
+.image-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease, opacity 0.3s;
+  filter: saturate(1.1);
+  will-change: transform;
+  opacity: 1;
+}
+
+.image-card img.loaded {
+  opacity: 1;
+}
+
+.image-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Fix white text on white cards */
+.image-card[style*="--color: #ffffff"] .overlay {
+  color: #000 !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.image-card[style*="--color: #ffffff"] .overlay::after {
+  color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Card text overlay */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color, rgba(0, 0, 0, 0.75));
+  color: white;
+  padding: 1.8rem;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 1.25rem;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  border-top: 3px solid rgba(255, 255, 255, 0.3);
+  will-change: transform;
+}
+
+.overlay::after {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.image-card:hover .overlay {
+  transform: translateY(0);
+}
+
+/* Color mappings for cards */
+.image-card[style*="--color: #ff69b4"] {
+  --color-rgb: var(--ff69b4-rgb);
+}
+.image-card[style*="--color: #ffffff"] {
+  --color-rgb: var(--ffffff-rgb);
+}
+.image-card[style*="--color: #dc143c"] {
+  --color-rgb: var(--dc143c-rgb);
+}
+.image-card[style*="--color: #ffd700"] {
+  --color-rgb: var(--ffd700-rgb);
+}
+.image-card[style*="--color: #8b4513"] {
+  --color-rgb: var(--8b4513-rgb);
+}
+.image-card[style*="--color: #50c878"] {
+  --color-rgb: var(--50c878-rgb);
+}
+.image-card[style*="--color: #c0c0c0"] {
+  --color-rgb: var(--c0c0c0-rgb);
+}
+.image-card[style*="--color: #000000"] {
+  --color-rgb: var(--000000-rgb);
+}
+.image-card[style*="--color: #0000ff"] {
+  --color-rgb: var(--0000ff-rgb);
+}
+
+/* =========================================
+   5. FOOTER STYLING
+   ========================================= */
+/* Add or update these styles at the end of your file */
+
+/* =========================================
+   5. FOOTER STYLING (UPDATED)
+   ========================================= */
+footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-top: 4rem;
+  background: linear-gradient(135deg, #845ec2 0%, #d65db1 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+footer h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Fix for invisible footer paragraph */
+
+/* Make sure footer text is visible with proper contrast */
+footer p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white !important; /* Force white text */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Add shadow for better readability */
+  opacity: 1 !important; /* Ensure it's not transparent */
+}
+
+/* Ensure footer content has proper stacking context */
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: block !important; /* Force display */
+}
+
+/* Fix potential background issues */
+footer::before {
+  z-index: 1; /* Lower z-index to ensure content appears above */
+  opacity: 0.3; /* Lower opacity for better text contrast */
+}
+
+/* Force all footer elements to be visible */
+footer h2,
+footer p,
+footer .facts,
+footer .social-links,
+footer .copyright {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Additional contrast improvement */
+footer {
+  background: linear-gradient(135deg, #845ec2 0%, #d65db1 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+/* Ensure footer is properly positioned on mobile */
+@media (max-width: 768px) {
+  footer p {
+    font-size: 1rem;
+    padding: 0 15px;
+    margin-bottom: 1.5rem;
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Make sure all footer content is properly sized */
+  footer .container {
+    padding: 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  footer::before {
+    opacity: 0.2; /* Even lower opacity on mobile */
+  }
+}
+/* Enhanced facts styling */
+.facts {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 18px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  margin: 0 auto;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Social links styling */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.social-links a:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-links i {
+  color: white;
+}
+
+/* Copyright section */
+.copyright {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  position: relative;
+  z-index: 2;
+}
+
+/* Replace all existing outro styles with this clean, consolidated version */
+
+/* =========================================
+   OUTRO SECTION - CONSOLIDATED STYLES
+   ========================================= */
+
+#outro {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 246, 0.9),
+    rgba(255, 245, 247, 0.9)
+  );
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 2rem 0;
+  overflow: hidden;
+  border-top: 4px solid rgba(232, 62, 140, 0.3);
+  border-bottom: 4px solid rgba(232, 62, 140, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 10px 32px rgba(31, 38, 135, 0.1);
+}
+
+/* Outro decorative elements */
+/* COMPLETE OUTRO CORNERS FIX - Add this to the end of your CSS file */
+
+/* First, we need to remove the conflicting styles that are causing problems */
+#outro::before {
+  content: none !important;
+}
+
+#outro::after {
+  content: none !important;
+}
+
+/* Now let's add four distinct corner elements */
+#outro .corners {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+#outro .corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(232, 62, 140, 0.2);
+  z-index: 5;
+}
+
+#outro .corner-top-left {
+  top: 20px;
+  left: 20px;
+  border-right: none;
+  border-bottom: none;
+}
+
+#outro .corner-top-right {
+  top: 20px;
+  right: 20px;
+  border-left: none;
+  border-bottom: none;
+}
+
+#outro .corner-bottom-left {
+  bottom: 20px;
+  left: 20px;
+  border-right: none;
+  border-top: none;
+}
+
+#outro .corner-bottom-right {
+  bottom: 20px;
+  right: 20px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Add a separate background layer */
+#outro .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 246, 0.9),
+    rgba(255, 245, 247, 0.9)
+  );
+  z-index: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  #outro .corner {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  #outro .corner {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Solid background as fallback */
+#outro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f8f5f7; /* Solid fallback */
+  z-index: 0;
+  opacity: 0.8;
+}
+
+/* Outro content */
+#outro .container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+  z-index: 5;
+}
+
+#outro h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333 !important;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 5;
+  opacity: 1 !important;
+  max-width: 100%;
+  animation: fadeInUp 1s ease forwards;
+}
+
+#outro p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #444 !important;
+  position: relative;
+  z-index: 5;
+  opacity: 1 !important;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  #outro {
+    padding: 3rem 1rem;
+    min-height: auto;
+    max-height: none;
+    background-attachment: scroll !important;
+    margin: 1.5rem 0;
+    border-radius: 15px;
+  }
+
+  #outro::before,
+  #outro::after {
+    width: 40px;
+    height: 40px;
+  }
+
+  #outro h2 {
+    font-size: 1.8rem !important;
+    margin-bottom: 1rem !important;
+    padding: 0 !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  #outro p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+    padding: 0 5px !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  #outro .container {
+    padding: 15px !important;
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  #outro {
+    padding: 2.5rem 0.75rem;
+    margin: 1rem 0;
+  }
+
+  #outro h2 {
+    font-size: 1.5rem !important;
+  }
+
+  #outro p {
+    font-size: 0.95rem !important;
+  }
+
+  #outro::before,
+  #outro::after {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  #outro {
+    background-attachment: scroll !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Fix footer on mobile */
+  footer {
+    padding: 2rem 1rem;
+    border-radius: 15px 15px 0 0;
+    margin-top: 2rem;
+  }
+
+  footer h2 {
+    font-size: 1.7rem;
+  }
+
+  footer p {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Fix outro on mobile */
+  #outro {
+    min-height: 40vh;
+    padding: 3rem 1rem;
+    background-attachment: scroll !important; /* Critical fix for mobile */
+  }
+
+  #outro h2 {
+    font-size: 1.8rem;
+  }
+
+  #outro p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Smaller social icons on mobile */
+  .social-links {
+    gap: 1rem;
+  }
+
+  .social-links a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  /* Adjust facts for mobile */
+  .facts {
+    padding: 15px;
+    font-size: 1rem;
+    max-width: 90%;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  #outro h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Force proper spacing in footer */
+  footer *,
+  #outro * {
+    max-width: 100%;
+  }
+
+  /* Fix iOS-specific issues */
+  footer,
+  #outro {
+    margin-bottom: env(safe-area-inset-bottom, 0);
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0));
+  }
+}
+
+/* Fix specific display bugs */
+#outro,
+footer {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* =========================================
+   6. UI ELEMENTS
+   ========================================= */
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(to right, #e83e8c, #fd7e14, #ffc107);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.2s ease;
+}
+
+/* Scroll to top button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(232, 62, 140, 0.8);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-top-btn:hover {
+  background: rgba(232, 62, 140, 1);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(232, 62, 140, 0.3);
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(232, 62, 140, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s,
+    transform 0.3s;
+}
+
+.custom-cursor.cursor-grow {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(232, 62, 140, 0.1);
+  border-color: rgba(232, 62, 140, 0.8);
+}
+
+/* Ripple effect for headings */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Confetti animation */
+.confetti {
+  position: fixed;
+  top: -10px;
+  z-index: -1;
+  border-radius: 0 0 5px 5px;
+  animation: fall linear forwards;
+  opacity: 0.7;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.1));
+}
+
+/* =========================================
+   7. ANIMATIONS
+   ========================================= */
+@keyframes colorChange {
+  0% {
+    color: #e83e8c;
+  }
+  25% {
+    color: #ff4f81;
+  }
+  50% {
+    color: #d44a7a;
+  }
+  75% {
+    color: #ff3366;
+  }
+  100% {
+    color: #c13584;
+  }
+}
+
+@keyframes gentleFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+/* =========================================
+   8. MEDIA QUERIES
+   ========================================= */
+/* Tablet */
+@media (max-width: 768px) {
+  /* Restore default cursor on mobile */
+  body {
+    cursor: auto;
+  }
+
+  /* Container and typography */
+  .container {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 2.8rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+
+  /* Layout */
+  #gallery {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  #intro,
+  #outro {
+    padding: 2rem 1rem;
+  }
+  section {
+    min-height: calc(var(--vh, 1vh) * 50);
+    margin: 1.5rem 0;
+  }
+
+  /* Images */
+  .image-card img {
+    height: 320px;
+  }
+
+  /* Overlays */
+  .overlay {
+    transform: translateY(70%);
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  /* Performance optimizations */
+  body::before,
+  #intro,
+  #outro {
+    background-attachment: scroll;
+  }
+  .image-card,
+  .image-card img,
+  .overlay {
+    transition-duration: 0.4s;
+  }
+
+  /* UI Elements */
+  .custom-cursor {
+    display: none;
+  }
+  .scroll-top-btn {
+    width: 40px;
+    height: 40px;
+    right: 15px;
+    bottom: 15px;
+  }
+
+  /* Decorative elements */
+  #intro::before,
+  #intro::after,
+  #outro::before,
+  #outro::after {
+    width: 40px;
+    height: 40px;
+  }
+  .fact::before,
+  .fact::after {
+    font-size: 2rem;
+  }
+
+  /* Fix scrolling issues */
+  html,
+  body {
+    overscroll-behavior: none;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  /* Typography */
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Layout */
+  #gallery {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  /* Images */
+  .image-card {
+    border-width: 3px;
+  }
+  .image-card img {
+    height: 280px;
+  }
+
+  /* Simplify effects */
+  .image-card::after {
+    display: none;
+  }
+}
+
+/* Landscape mode */
+@media (max-width: 900px) and (orientation: landscape) {
+  #gallery {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .image-card img {
+    height: 200px;
+  }
+
+  section {
+    padding: 1.5rem 1rem;
+    margin: 1rem 0;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* iOS Safari fix */
+@supports (-webkit-touch-callout: none) {
+  body::before,
+  #intro,
+  #outro {
+    background-attachment: scroll;
+  }
+}
+
+/* Touch devices */
+@media (hover: none) {
+  .image-card:hover {
+    transform: none;
+  }
+
+  .image-card:active {
+    transform: scale(0.98);
+  }
+
+  .image-card:active .overlay {
+    transform: translateY(0);
+  }
+
+  h1,
+  h2 {
+    animation: none;
+  }
+
+  section:hover {
+    transform: none;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Handle delayed loading */
+window.onload {
+  .image-card {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .image-card img {
+    opacity: 1 !important;
+  }
+}
+
+/* State classes for scripting */
+.mobile-device {
+  cursor: auto !important;
+}
+
+.image-visible {
+  opacity: 1 !important;
+}
+
+.touch-friendly .overlay {
+  transform: translateY(70%) !important;
+}
+
+/* Mobile portrait/landscape orientation fixes */
+@media (max-width: 900px) and (orientation: landscape) {
+  .image-card img {
+    height: 200px !important;
+  }
+
+  section {
+    padding: 1rem !important;
+    margin: 0.75rem 0 !important;
+  }
+}
+
+/* Touch interaction handling */
+.touch-active {
+  transform: scale(0.98) !important;
+}
+
+.mobile .image-card.touch-active .overlay {
+  transform: translateY(0) !important;
+}
+
+/* Fix for iOS height issues */
+:root {
+  --vh: 1vh;
+}
+
+.mobile section {
+  min-height: calc(var(--vh, 1vh) * 50);
+}
+
+/* Fix cursor issues on mobile */
+.mobile {
+  cursor: auto !important;
+}
+
+.mobile .custom-cursor {
+  display: none !important;
+}
