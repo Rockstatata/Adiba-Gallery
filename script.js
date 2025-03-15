@@ -543,6 +543,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Theme toggle functionality
+  const toggleSwitch = document.querySelector("#checkbox");
+  const currentTheme = localStorage.getItem("theme");
+
+  // Check for saved theme preference
+  if (currentTheme) {
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    // Update toggle position
+    if (currentTheme === "dark") {
+      toggleSwitch.checked = true;
+    }
+  } else {
+    // Check for system preference
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      toggleSwitch.checked = true;
+      localStorage.setItem("theme", "dark");
+    }
+  }
+
+  // Handle toggle switch change
+  toggleSwitch.addEventListener("change", switchTheme, false);
+
+  function switchTheme(e) {
+    if (e.target.checked) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    }
+  }
+
   // Click effects on headings - adapt for touch on mobile
   const headings = document.querySelectorAll("h1, h2");
   const eventType = isMobile ? "touchend" : "click";
